@@ -48,10 +48,29 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="{{ route('listproduct') }}" class="nav-link ">
+                        <i class="nav-icon fas fa-list-ul"></i>
+                        <p>
+                            List Product
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="{{ route('product') }}" class="nav-link ">
                         <i class="nav-icon fas fa-layer-group"></i>
                         <p>
                             Product Array
+                        </p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="{{ route('logout') }}" class="nav-link ">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                            Logout
                         </p>
                     </a>
                 </li>

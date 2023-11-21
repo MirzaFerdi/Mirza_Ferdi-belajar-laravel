@@ -10,9 +10,6 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        // $categories = Category::all()->toArray();
-        $categories = DB::table('product_categories')->get()->toArray();
-
-        dd($categories);
+        $category = DB::table('product_categories')->get();
     }
 }
