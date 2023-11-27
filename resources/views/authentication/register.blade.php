@@ -124,28 +124,6 @@
             />
           </div>
 
-
-          <!-- <div class="mb-3 form-check d-flex justify-content-between">
-            <div>
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="cekRemember"
-              />
-              <label class="form-check-label" for="cekRemember">
-                Remember Me
-              </label>
-            </div>
-            <p class="d-flex justify-content-end">
-              <a
-                href="#"
-                class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-              >
-                Forgot Password
-              </a>
-            </p>
-          </div> -->
-
           <div class="mb-3">
             <a href="dashboard.php">
               <button type="submit" class="btn login fw- mb-1 w-100">

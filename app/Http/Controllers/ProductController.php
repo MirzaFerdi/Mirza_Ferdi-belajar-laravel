@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -32,6 +33,34 @@ class ProductController extends Controller
     public function store(Request $request){
         // Storage::putFileAs('images', $request->image, $request->file('image')->getClientOriginalName());
 
+        $validated = Validator::make($request->all(),[
+            'product_name' => 'required | max:30',
+            'product_code' => 'required | unique:products,product_code',
+            'description' => ' required | max:125',
+            'price' => 'required',
+            'unit' => 'required | string | max:20',
+            'discount_amount' => 'required',
+            'stock' => 'required | max:10',
+        ], [
+            'product_name.required' => 'Nama produk harus diisi',
+            'product_name.max' => 'Nama produk maksimal 35 huruf',
+            'product_code.required' => 'Kode produk harus diisi',
+            'product_code.unique' => 'Kode produk tidak boleh sama',
+            'description.required' => 'Deskripsi produk harus diisi',
+            'description.max' => 'Deskripsi produk maksimal 125 huruf',
+            'price.required' => 'Harga produk harus diisi',
+            'unit.required' => 'Satuan produk harus diisi',
+            'unit.string' => 'Satuan produk harus diisi dengan huruf',
+            'unit.max' => 'Satuan produk maksimal 20 huruf',
+            'discount_amount.required' => 'Diskon produk harus diisi',
+            'stock.required' => 'Stok produk harus diisi',
+            'stock.max' => 'Stok produk maksimal 10 digit',
+        ]);
+
+        if($validated->fails()){
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+
         $request = Product::create([
             'product_name' => $request->product_name,
             'category_id' => $request->category_id,
@@ -43,7 +72,7 @@ class ProductController extends Controller
             'stock' => $request->stock,
             'image' => $request->image->getClientOriginalName(),
         ]);
-        return redirect()->route('product');
+        return redirect()->route('product')->with('success', 'Product berhasi; ditambahkan.');
     }
 
     public function edit($id){
@@ -54,7 +83,32 @@ class ProductController extends Controller
 
     public function update(Request $request, $id){
 
-        $product = Product::where('id', $id)->update([
+        $validated = Validator::make($request->all(),[
+            'product_name' => 'required | max:30',
+            'description' => ' required | max:125',
+            'price' => 'required',
+            'unit' => 'required | string | max:20',
+            'discount_amount' => 'required',
+            'stock' => 'required | max:10',
+        ], [
+            'product_name.required' => 'Nama produk harus diisi',
+            'product_name.max' => 'Nama produk maksimal 35 huruf',
+            'description.required' => 'Deskripsi produk harus diisi',
+            'description.max' => 'Deskripsi produk maksimal 125 huruf',
+            'price.required' => 'Harga produk harus diisi',
+            'unit.required' => 'Satuan produk harus diisi',
+            'unit.string' => 'Satuan produk harus diisi dengan huruf',
+            'unit.max' => 'Satuan produk maksimal 20 huruf',
+            'discount_amount.required' => 'Diskon produk harus diisi',
+            'stock.required' => 'Stok produk harus diisi',
+            'stock.max' => 'Stok produk maksimal 10 digit',
+        ]);
+
+        if($validated->fails()){
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+
+        $request = Product::where('id', $id)->update([
             'product_name' => $request->product_name,
             'category_id' => $request->category_id,
             'product_code' => $request->product_code,
@@ -76,7 +130,7 @@ class ProductController extends Controller
         //     'stock' => $request->stock,
         //     'image' => $request->image->getClientOriginalName(),
         // ]);
-        return redirect()->route('product');
+        return redirect()->route('product')->with('success', 'Product berhasi; ditambahkan.');
     }
 
     public function delete($id){

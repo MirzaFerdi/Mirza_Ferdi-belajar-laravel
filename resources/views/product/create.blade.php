@@ -17,12 +17,27 @@
       <div class="row">
         <div class="col-12">
           <div class="card">
+            <div class="pb-8">
+              {{-- @if ($errors->any())
+                  <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+                      Something wrong!
+                  </div>
+                  <ul class="border border-t-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+                      @foreach ($errors->all() as $error)
+                          <li>{{$error}}</li>
+                      @endforeach
+                  </ul>
+              @endif --}}
+            </div>
             <div class="card-header">
                 <form id="form" action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-2">
                       <label for="namaProduk" class="form-label">Nama Produk<span style="color: red;">*</span></label>
                       <input type="text" class="form-control" id="namaProduk" name="product_name" required>
+                      @if ($errors->has('product_name'))
+                          <p class="text-red">*{{$errors->first('product_name')}}</p>
+                      @endif
                     </div>
 
                     <div class="mb-2 form-group">
@@ -43,16 +58,25 @@
                     <div class="mb-2">
                       <label for="deskripsi" class="form-label">Deskripsi</label>
                       <textarea class="form-control" id="deskripsi" rows="3" name="description"></textarea>
+                      @if ($errors->has('description'))
+                            <p class="text-red">*{{ $errors->first('description') }}</p>
+                      @endif
                     </div>
 
                     <div class="mb-2">
                       <label for="harga" class="form-label">Harga<span style="color: red;">*</span></label>
                       <input type="number" class="form-control" id="harga" name="price" required>
+                      @if ($errors->has('price'))
+                            <p class="text-red">*{{ $errors->first('price') }}</p>
+                      @endif
                     </div>
 
                     <div class="mb-2">
                       <label for="satuan" class="form-label">Satuan<span style="color: red;">*</span></label>
                       <input type="text" class="form-control" id="satuan" name="unit" required>
+                      @if ($errors->has('unit'))
+                        <p class="text-red">*{{ $errors->first('unit')}}</p>
+                      @endif
                     </div>
 
                     <div class="mb-2">
@@ -63,6 +87,9 @@
                     <div class="mb-2">
                       <label for="stok" class="form-label">Stok<span style="color: red;">*</span></label>
                       <input type="number" class="form-control" id="stok" name="stock" required>
+                      @if ($errors->has('stock'))
+                        <p class="text-red">*{{ $errors->first('stock')}}</p>
+                      @endif
                     </div>
 
                     {{-- <div class="form-group">

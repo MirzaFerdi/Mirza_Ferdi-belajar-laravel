@@ -88,7 +88,6 @@
               required
             />
           </div>
-
           <div class="mb-3 form-check d-flex justify-content-between">
             <div>
               <input

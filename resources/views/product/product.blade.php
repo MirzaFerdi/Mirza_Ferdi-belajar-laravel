@@ -53,9 +53,9 @@
             <thead>
             <tr>
               <th>No</th>
-              <th>Kategori</th>
-              <th>Kode Produk</th>
               <th>Nama Produk</th>
+              <th>Kode Produk</th>
+              <th>Kategori</th>
               <th>Deskripsi</th>
               <th>Harga</th>
               <th>Satuan</th>
@@ -70,9 +70,9 @@
 
             <tr>
               <td>{{$loop->iteration}}</td>
-              <td>{{$row->category->category_name}}</td>
-              <td>{{$row->product_code}}</td>
               <td>{{$row->product_name}}</td>
+              <td>{{$row->product_code}}</td>
+              <td>{{$row->category->category_name}}</td>
               <td>{{$row->description}}</td>
               <td>{{$row->price}}</td>
               <td>{{$row->unit}}</td>
@@ -90,12 +90,12 @@
                 <div class="container">
                   <div class="row  justify-content-center">
                     <div class="col-6">
-                      <a href="/product/delete/{{$row->id}}" class="btn btn-danger btn-sm " name="btn-hapus" >
+                        <a href="/product/delete/{{$row->id}}" class="btn btn-sm btn-danger mr-2" name="btn-hapus" >
                         <i class="fas fa-trash-alt"></i>
                       </a>
                     </div>
                     <div class="col-6">
-                      <a href="{{route('product.edit', ['id' => $row->id])}}" class="btn btn-sm bg-teal" name="btn-edit" >
+                        <a href="{{route('product.edit', ['id' => $row->id])}}" class="btn btn-sm bg-teal" name="btn-edit" >
                         <i class="fas fa-edit"></i>
                       </a>
                     </div>

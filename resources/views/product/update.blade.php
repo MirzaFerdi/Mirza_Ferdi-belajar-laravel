@@ -24,6 +24,9 @@
                     <div class="mb-2">
                       <label for="namaProduk" class="form-label">Nama Produk<span style="color: red;">*</span></label>
                       <input type="text" class="form-control" id="namaProduk" name="product_name" value="{{$product->product_name}}" required>
+                      @if ($errors->has('product_name'))
+                          <p class="text-red">*{{$errors->first('product_name')}}</p>
+                      @endif
                     </div>
 
                     <div class="mb-2 form-group">
@@ -39,23 +42,32 @@
 
                     <div class="mb-2">
                       <label for="kodeProduk" class="form-label">Kode Produk</label>
-                      <input type="text" class="form-control" id="kodeProduk" name="product_code" value="{{$product->product_code}}">
+                      <input disabled type="text" class="form-control" id="kodeProduk" name="product_code" value="{{$product->product_code}}">
                     </div>
 
 
                     <div class="mb-2">
                       <label for="deskripsi" class="form-label">Deskripsi</label>
                       <textarea class="form-control" id="deskripsi" rows="3" name="description" >{{$product->description}}</textarea>
+                      @if ($errors->has('description'))
+                            <p class="text-red">*{{ $errors->first('description') }}</p>
+                      @endif
                     </div>
 
                     <div class="mb-2">
                       <label for="harga" class="form-label">Harga<span style="color: red;">*</span></label>
                       <input type="number" class="form-control" id="harga" name="price" required value="{{$product->price}}">
+                      @if ($errors->has('price'))
+                            <p class="text-red">*{{ $errors->first('price') }}</p>
+                      @endif
                     </div>
 
                     <div class="mb-2">
                       <label for="satuan" class="form-label">Satuan<span style="color: red;">*</span></label>
                       <input type="text" class="form-control" id="satuan" name="unit" required value="{{$product->unit}}">
+                      @if ($errors->has('unit'))
+                        <p class="text-red">*{{ $errors->first('unit')}}</p>
+                      @endif
                     </div>
 
                     <div class="mb-2">
@@ -66,6 +78,9 @@
                     <div class="mb-2">
                       <label for="stok" class="form-label">Stok<span style="color: red;">*</span></label>
                       <input type="number" class="form-control" id="stok" name="stock" required value="{{$product->stock}}">
+                      @if ($errors->has('stock'))
+                        <p class="text-red">*{{ $errors->first('stock')}}</p>
+                      @endif
                     </div>
 
 
