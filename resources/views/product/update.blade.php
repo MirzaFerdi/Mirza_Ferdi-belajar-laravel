@@ -42,7 +42,7 @@
 
                     <div class="mb-2">
                       <label for="kodeProduk" class="form-label">Kode Produk</label>
-                      <input disabled type="text" class="form-control" id="kodeProduk" name="product_code" value="{{$product->product_code}}">
+                      <input type="text" class="form-control" id="kodeProduk" name="product_code" value="{{$product->product_code}}" readonly>
                     </div>
 
 

@@ -52,6 +52,9 @@
                     <div class="mb-2">
                       <label for="kodeProduk" class="form-label">Kode Produk</label>
                       <input type="text" class="form-control" id="kodeProduk" name="product_code">
+                      @if ($errors->has('product_code'))
+                            <p class="text-red">*{{ $errors->first('product_code') }}</p>
+                      @endif
                     </div>
 
 
