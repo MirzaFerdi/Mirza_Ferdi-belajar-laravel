@@ -60,7 +60,7 @@
                     <a href="{{ route('product') }}" class="nav-link ">
                         <i class="nav-icon fas fa-layer-group"></i>
                         <p>
-                            Product Array
+                            Product
                         </p>
                     </a>
                 </li>
