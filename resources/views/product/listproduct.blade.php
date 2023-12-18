@@ -77,7 +77,7 @@
 
               @if ($row->image)
                 <td>
-                    <img src="{{asset('produk/'. $row->image)}}" alt="{{$row->image}}" width="75px" height="auto">
+                    <img src="{{asset('storage/image/'. $row->image)}}" alt="{{$row->image}}" width="75px" height="auto">
                 </td>
                 @else
                 <td>Not Found</td>

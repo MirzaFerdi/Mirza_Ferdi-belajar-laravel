@@ -31,7 +31,6 @@ class ProductController extends Controller
     }
 
     public function store(Request $request){
-        // Storage::putFileAs('images', $request->image, $request->file('image')->getClientOriginalName());
 
         $validated = Validator::make($request->all(),[
             'product_name' => 'required | max:30',
@@ -41,6 +40,7 @@ class ProductController extends Controller
             'unit' => 'required | string | max:20',
             'discount_amount' => 'required',
             'stock' => 'required | max:10',
+            'image' => 'image | mimes:jpeg,png,jpg,svg | max:2048',
         ], [
             'product_name.required' => 'Nama produk harus diisi',
             'product_name.max' => 'Nama produk maksimal 35 huruf',
@@ -61,6 +61,11 @@ class ProductController extends Controller
             return redirect()->back()->withErrors($validated)->withInput();
         }
 
+        $imgName = time().'.'.$request->image->extension();
+
+        Storage::putFileAs('image', $request->image, $imgName);
+
+
         $request = Product::create([
             'product_name' => $request->product_name,
             'category_id' => $request->category_id,
@@ -70,7 +75,7 @@ class ProductController extends Controller
             'unit' => $request->unit,
             'discount_amount' => $request->discount_amount,
             'stock' => $request->stock,
-            'image' => $request->image->getClientOriginalName(),
+            'image' => $imgName,
         ]);
         return redirect()->route('product')->with('success', 'Product berhasi; ditambahkan.');
     }
@@ -108,28 +113,38 @@ class ProductController extends Controller
             return redirect()->back()->withErrors($validated)->withInput();
         }
 
-        $request = Product::where('id', $id)->update([
-            'product_name' => $request->product_name,
-            'category_id' => $request->category_id,
-            'product_code' => $request->product_code,
-            'description' => $request->description,
-            'price' => $request->price,
-            'unit' => $request->unit,
-            'discount_amount' => $request->discount_amount,
-            'stock' => $request->stock,
-            'image' => $request->image->getClientOriginalName(),
-        ]);
-        // DB::table('products')->where('id', $id)->update([
-        //     'product_name' => $request->product_name,
-        //     'category_id' => $request->category_id,
-        //     'product_code' => $request->product_code,
-        //     'description' => $request->description,
-        //     'price' => $request->price,
-        //     'unit' => $request->unit,
-        //     'discount_amount' => $request->discount_amount,
-        //     'stock' => $request->stock,
-        //     'image' => $request->image->getClientOriginalName(),
-        // ]);
+        if($request->hasFile('image')){
+            $prevImage = Product::find($id)->image;
+
+            Storage::delete('image/'.$prevImage);
+
+            $imgName = time().'.'.$request->image->extension();
+
+            Storage::putFileAs('image', $request->image, $imgName);
+
+            $request = Product::where('id', $id)->update([
+                'product_name' => $request->product_name,
+                'category_id' => $request->category_id,
+                'product_code' => $request->product_code,
+                'description' => $request->description,
+                'price' => $request->price,
+                'unit' => $request->unit,
+                'discount_amount' => $request->discount_amount,
+                'stock' => $request->stock,
+                'image' => $imgName,
+            ]);
+        }else{
+            $request = Product::where('id', $id)->update([
+                'product_name' => $request->product_name,
+                'category_id' => $request->category_id,
+                'product_code' => $request->product_code,
+                'description' => $request->description,
+                'price' => $request->price,
+                'unit' => $request->unit,
+                'discount_amount' => $request->discount_amount,
+                'stock' => $request->stock,
+            ]);
+        }
         return redirect()->route('product')->with('success', 'Product berhasi; ditambahkan.');
     }
 
