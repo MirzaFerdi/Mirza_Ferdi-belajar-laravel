@@ -94,59 +94,6 @@
                 </div>
                 <!-- ./col -->
             </div>
-
-
-            {{-- <script>
-                var Highcarts = require('highcharts');
-
-                require('highcharts/modules/exporting')(Highcharts);
-
-                Highcharts.chart('container', {
-                    title: {
-                        text: 'Grafik Penjualan'
-                    },
-                    subtitle: {
-                        text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Jumlah Produk Per Kategori'
-                        }
-                    },
-                    xAxis: {
-                        categories: ['Keyboard', 'Headset', 'Monitor']
-                    },
-                    legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'middle'
-                    },
-                    plotOptions: {
-                        series: {
-                            allowPointSelect: true
-                        }
-                    },
-                    series: [{
-                        name: 'Jumlah Produk',
-                        data: $category
-                    }],
-                    responsive: {
-                        rules: [{
-                            condition: {
-                                maxWidth: 500
-                            },
-                            chartOptions: {
-                                legend: {
-                                    layout: 'horizontal',
-                                    align: 'center',
-                                    verticalAlign: 'bottom'
-                                }
-                            }
-                        }]
-                    }
-                })
-            </script> --}}
-
             <!-- /.row -->
             <!-- Main row -->
         </div><!-- /.container-fluid -->
@@ -212,7 +159,7 @@
 @endsection
 
 @section('script')
-<script src="{{asset('libraries/code/highcharts.js')}}"></script>
+<script src="{{asset('js/highcharts.js')}}"></script>
     <script type="text/javascript">
         function toNumber(item) {
             return parseInt(item);
