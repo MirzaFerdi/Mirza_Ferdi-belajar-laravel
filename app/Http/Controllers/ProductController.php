@@ -15,19 +15,27 @@ class ProductController extends Controller
     {
         $product = Product::all();
         $category = Category::all();
-        return view('product.product', compact('product', 'category'));
-
+        if(auth()->user()->can("view_product")){
+            return view('product.product', compact('product', 'category'));
+        }
+        return abort(403, 'Unauthorized Page');
     }
 
     public function listproduct(){
         $product = Product::all();
         $category = Category::all();
-        return view('product.listproduct', compact('product', 'category'));
+        if(auth()->user()->can("view_listproduct")){
+            return view('product.listproduct', compact('product', 'category'));
+        }
+        return abort(403, 'Unauthorized Page');
     }
 
     public function create(){
         $category = Category::all();
-        return view('product.create', compact('category'));
+        if(auth()->user()->can("view_product")){
+            return view('product.create', compact('category'));
+        }
+        return abort(403, 'Unauthorized Page');
     }
 
     public function store(Request $request){
@@ -83,7 +91,10 @@ class ProductController extends Controller
     public function edit($id){
         $product = Product::find($id);
         $category = Category::all();
-        return view('product.update', compact('product', 'category'));
+        if(auth()->user()->can("view_product")){
+            return view('product.update', compact('product', 'category'));
+        }
+        return abort(403, 'Unauthorized Page');
     }
 
     public function update(Request $request, $id){

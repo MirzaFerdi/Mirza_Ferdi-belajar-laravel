@@ -130,13 +130,17 @@
               >Sign Up</a
             >
           </p>
+          <a href="{{route('home')}}" class="text-decoration-none text-body-secondary">
+              <i class="fas fa-arrow-left"></i>
+              Kembali
+          </a>
       </form>
 
         <div class="foto col-md-6 px-0 d-none d-lg-block h-100">
           <img
             src="{{asset('img/img-login.jpg')}}"
             class="d-block w-100 rounded-end"
-            style="object-fit: cover"
+            style="object-fit: cover; height: 100% !important"
             alt="login-image"
           />
         </div>

@@ -15,7 +15,7 @@
                 <img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Mirza Ferdi</a>
+                <a href="#" class="d-block">{{ auth()->user()->name }}</a>
             </div>
         </div>
 
@@ -47,23 +47,40 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{ route('listproduct') }}" class="nav-link ">
-                        <i class="nav-icon fas fa-list-ul"></i>
-                        <p>
-                            List Product
-                        </p>
-                    </a>
-                </li>
+                @if (auth()->user()->can("view_listproduct"))
+                    <li class="nav-item">
+                        <a href="{{ route('listproduct') }}" class="nav-link ">
+                            <i class="nav-icon fas fa-list-ul"></i>
+                            <p>
+                                Daftar Produk
+                            </p>
+                        </a>
+                    </li>
+                @endif
 
-                <li class="nav-item">
-                    <a href="{{ route('product') }}" class="nav-link ">
-                        <i class="nav-icon fas fa-layer-group"></i>
-                        <p>
-                            Product
-                        </p>
-                    </a>
-                </li>
+                @if (auth()->user()->can("view_product"))
+                    <li class="nav-item">
+                        <a href="{{ route('product') }}" class="nav-link ">
+                            <i class="nav-icon fas fa-layer-group"></i>
+                            <p>
+                                Produk
+                            </p>
+                        </a>
+                    </li>
+
+                @endif
+
+                @if (auth()->user()->can("view_category"))
+                    <li class="nav-item">
+                        <a href="{{ route('category') }}" class="nav-link ">
+                            <i class="nav-icon fas fa-stream"></i>
+                            <p>
+                                Kategori
+                            </p>
+                        </a>
+                    </li>
+
+                @endif
 
 
                 <li class="nav-item">

@@ -5,16 +5,16 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Product CRUD</h1>
+        <h1>Produk CRUD</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Product CRUD</li>
+          <li class="breadcrumb-item active">Produk CRUD</li>
         </ol>
       </div>
     </div>
-  </div><!-- /.container-fluid -->
+  </div>
 </section>
 
 <!-- Main content -->
@@ -25,15 +25,9 @@
       <div class="card">
         <div class="card-header">
           <div class="d-flex justify-content-between">
-            <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
+            <form action="#" >
                 <div class="input-group">
-                    <?php
-                    $kata_kunci="";
-                    if (isset($_POST['kata_kunci'])) {
-                        $kata_kunci=$_POST['kata_kunci'];
-                    }
-                    ?>
-                    <input type="text" name="kata_kunci" value="<?php echo $kata_kunci;?>" class="form-control form-control-md" placeholder="Cari...">
+                    <input type="text" name="kata_kunci" class="form-control form-control-md" placeholder="Cari...">
                     <div class="input-group-append">
                         <button type="submit" name="cari" class="btn btn-md btn-default">
                             <i class="fa fa-search"></i>
@@ -42,12 +36,8 @@
                 </div>
             </form>
             <a class="btn bg-primary" href="{{route('product.create')}}" role="button"> Tambah Produk</a>
-            {{-- <button type="button" class="btn btn-primary btn-tambah"  data-toggle="modal" data-target="#modal-tambah">
-                Tambah Produk
-            </button> --}}
           </div>
         </div>
-        <!-- /.card-header -->
         <div class="card-body">
           <table id="" class="table table-bordered table-hover text-center">
             <thead>
@@ -62,7 +52,7 @@
               <th>Diskon</th>
               <th>Stok</th>
               <th>Foto</th>
-              <th>Action</th>
+              <th>Aksi</th>
             </tr>
             </thead>
             <tbody>
@@ -101,27 +91,17 @@
                     </div>
                   </div>
                 </div>
-                  <!-- <div class="text-center">
-                  </div> -->
               </td>
             </tr>
             @endforeach
-
             </tbody>
-            </tfoot>
           </table>
         </div>
-        <!-- /.card-body -->
       </div>
-      <!-- /.card -->
     </div>
-    <!-- /.col -->
   </div>
-  <!-- /.row -->
 </div>
-<!-- /.container-fluid -->
 </section>
-<!-- /.content -->
 
 
 @endsection

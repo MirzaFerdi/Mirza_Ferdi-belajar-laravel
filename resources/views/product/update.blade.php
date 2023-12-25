@@ -8,7 +8,7 @@
         <h1>Update Produk</h1>
       </div>
     </div>
-  </div><!-- /.container-fluid -->
+  </div>
 </section>
 
 <!-- Main content -->
@@ -83,13 +83,6 @@
                       @endif
                     </div>
 
-
-                    {{-- <label for="gambar" class="form-label">Foto Produk</label>
-                    <div class="mb-2 custom-file">
-                        <input type="file" class="custom-file-input" id="gambar" name="image" value="{{$product->image}}" multiple>
-                        <label class="custom-file-label" for="gambar">Choose file</label>
-                    </div> --}}
-
                     <div class="mb-2">
                         <label for="gambar" class="form-label">Foto Produk</label>
                         <input type="file" class="form-control" id="gambar" name="image" multiple>
@@ -97,21 +90,14 @@
 
                   <div class="modal-footer">
                     <a class="btn bg-secondary" href="{{route('product')}}">Batal</a>
-                    {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button> --}}
                     <button type="submit" name="tambah" class="btn btn-primary">Update</button>
                   </div>
                 </form>
             </div>
-            <!-- /.card-body -->
           </div>
-          <!-- /.card -->
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+</section>
 
 @endsection
